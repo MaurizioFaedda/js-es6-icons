@@ -112,8 +112,18 @@ $(document).ready(function() {
     icons.forEach((item) => {
         // per stampare l'icone devo creare la classe con 'family + prefix + name'---quindi vado a cercarle scorrendo tra le chiavi
         const {family, prefix, name} = item;
-        
-        console.log(family, prefix, name);
+
+        // console.log(family, prefix, name);
+
+        // creo una variabile dove salvo la struttura per stampare l'icona
+        const icon_complete = $('.container').append(
+            `
+            <div>
+                <i class="${family} ${prefix}${name}">
+                </i>
+            </div>
+            `
+        );
 
     });
 
