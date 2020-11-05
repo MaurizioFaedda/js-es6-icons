@@ -108,24 +108,24 @@ $(document).ready(function() {
     // literal, visualizzare in pagina tutte le icone con il
     // proprio nome.
 
-    // uso il forEach per scorrere tra gli oggetti
-    icons.forEach((item) => {
-        // per stampare l'icone devo creare la classe con 'family + prefix + name'---quindi vado a cercarle scorrendo tra le chiavi
-        const {family, prefix, name} = item;
-
-        // console.log(family, prefix, name);
-
-        // creo una variabile dove salvo la struttura per stampare l'icona
-        const icon_complete = $('.container').append(
-            `
-            <div>
-                <i class="${family} ${prefix}${name}">
-                </i>
-            </div>
-            `
-        );
-
-    });
+    // // uso il forEach per scorrere tra gli oggetti
+    // icons.forEach((item) => {
+    //     // per stampare l'icone devo creare la classe con 'family + prefix + name'---quindi vado a cercarle scorrendo tra le chiavi
+    //     const {family, prefix, name} = item;
+    //
+    //     // console.log(family, prefix, name);
+    //
+    //     // creo una variabile dove salvo la struttura per stampare l'icona
+    //     const icon_complete = $('.container').append(
+    //         `
+    //         <div>
+    //             <i class="${family} ${prefix}${name}">
+    //             </i>
+    //         </div>
+    //         `
+    //     );
+    //
+    // });
 
 
     //  definire un array di colori e associare ad ogni
@@ -141,25 +141,60 @@ $(document).ready(function() {
 
     // -------------------- con forEach ---------------
     // ciclo dentro icon
-    // icons.forEach((item) => {
-    //     const {type} = item;
-    //     // pusho in un nuovo array ogni type una sola votla lo stesso
-    //     // se il mio type è già presente quindi non faccio push
-    //     if(!types.includes(type)) {
-    //         types.push(type);
-    //     }
-    // });
-
-    // -------------------- con filter ---------------
-    const includes = icons.filter((item) => {
+    icons.forEach((item) => {
         const {type} = item;
-        return !types.includes(type);
+        // pusho in un nuovo array ogni type una sola votla lo stesso
+        // se il mio type è già presente quindi non faccio push
+        if(!types.includes(type)) {
+            types.push(type);
+        }
+
+
+
     });
 
-    types.push(includes);
-
+    // // -------------------- con filter ---------------
+    // const includes = icons.filter((item) => {
+    //     // const {type} = item;
+    //
+    //     return !types.includes(item.type);
+    // });
+    //
+    // types.push(includes);
 
     console.log(types);
+    console.log(colors);
+
+    // // collego l'indice della poszione dei type con quella dei colori
+    // types.forEach((item) => {
+    //     const type_position = types.indexOf(item);
+    //     const color_postion = colors[type_position];
+    //     console.log(color_postion);
+    //     console.log(type_position);
+    // });
+
+    // uso il forEach per scorrere tra gli oggetti
+    icons.forEach((item) => {
+        // per stampare l'icone devo creare la classe con 'family + prefix + name'---quindi vado a cercarle scorrendo tra le chiavi
+        const {family, prefix, name, type} = item;
+
+        // console.log(family, prefix, name);
+        const type_position = types.indexOf(type);
+        const color_postion = colors[type_position];
+        // creo una variabile dove salvo la struttura per stampare l'icona
+        const icon_complete = $('.container').append(
+            `
+            <div>
+                <i class="${family} ${prefix}${name}" style="color:${color_postion}">
+                </i>
+            </div>
+            `
+        );
+
+    });
+
+
+
 
 
 });
