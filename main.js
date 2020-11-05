@@ -1,9 +1,7 @@
 // definire un array di oggetti; ogni oggetto
 // rappresenta un'icona, che è caratterizzata da:
 // nome, prefisso, tipo e famiglia.
-// Utilizzando la funzione forEach e il template
-// literal, visualizzare in pagina tutte le icone con il
-// proprio nome.
+
 
 $(document).ready(function() {
 
@@ -105,5 +103,20 @@ $(document).ready(function() {
         family: 'fas'
     }
 ];
+
+    // Utilizzando la funzione forEach e il template
+    // literal, visualizzare in pagina tutte le icone con il
+    // proprio nome.
+
+    // uso il forEach per scorrere tra gli oggetti
+    icons.forEach((item) => {
+        // per stampare l'icone devo creare la classe con 'family + prefix + name'---quindi vado a cercarle scorrendo tra le chiavi
+        const {family, prefix, name} = item;
+        
+        console.log(family, prefix, name);
+
+    });
+
+
 
 });
