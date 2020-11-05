@@ -128,5 +128,38 @@ $(document).ready(function() {
     });
 
 
+    //  definire un array di colori e associare ad ogni
+    // tipo di icona un colore.
+
+    // creo un array di colori
+    const colors = ['yellow', 'blue', 'red'];
+
+    // creo il mio nuovo array che conterrà i miei tre type
+    const types = [];
+
+    // ho tre colori e tre type, quindi prima devo isolarmi i miei tre type per per poi poterli assocciarli
+
+    // -------------------- con forEach ---------------
+    // ciclo dentro icon
+    // icons.forEach((item) => {
+    //     const {type} = item;
+    //     // pusho in un nuovo array ogni type una sola votla lo stesso
+    //     // se il mio type è già presente quindi non faccio push
+    //     if(!types.includes(type)) {
+    //         types.push(type);
+    //     }
+    // });
+
+    // -------------------- con filter ---------------
+    const includes = icons.filter((item) => {
+        const {type} = item;
+        return !types.includes(type);
+    });
+
+    types.push(includes);
+
+
+    console.log(types);
+
 
 });
