@@ -153,17 +153,6 @@ $(document).ready(function() {
 
     });
 
-    // // -------------------- con filter ---------------
-    // const includes = icons.filter((item) => {
-    //     // const {type} = item;
-    //
-    //     return !types.includes(item.type);
-    // });
-    //
-    // types.push(includes);
-
-    console.log(types);
-    console.log(colors);
 
     // // collego l'indice della poszione dei type con quella dei colori
     // types.forEach((item) => {
@@ -181,6 +170,7 @@ $(document).ready(function() {
         // console.log(family, prefix, name);
         const type_position = types.indexOf(type);
         const color_postion = colors[type_position];
+
         // creo una variabile dove salvo la struttura per stampare l'icona
         const icon_complete = $('.container').append(
             `
@@ -192,6 +182,59 @@ $(document).ready(function() {
         );
 
     });
+
+    // creo un option nell'html e ciclo il value con gli elemnti dell'array type
+
+    types.forEach((type) => {
+        $('.opt').append(
+            `
+            <option value="${type}">
+                ${type}
+            </option>
+            `
+        );
+    });
+
+    // uso change per capire quando il valore è stato modificato ed eseguire il mio js
+    $('.opt').change(() => {
+
+        // al premere dell'opzione desiderata voglio che tutte le icone spariscano
+        // in modo da poter stampare dopo solo quelle con il valore type selezionato. Quindi...
+        $('.container').empty();
+
+        // mi salvo il valore dell'opzione selezionata (il mio type corrente)
+        const current_val= $('.opt').val();
+
+        // con un filtro mi salvo solo le icone che hanno un elemento type uguale al valore dell'opzione scelta
+        const current_type = icons.filter((item) => {
+            return current_val == item.type
+        });
+        // console.log(current_type);
+
+        // copia incolla della stampa precedente, ma invece di ciclare in tutte le icone ciclo e stampo solo le icone già filtrate in precedenza
+        current_type.forEach((item) => {
+            // per stampare l'icone devo creare la classe con 'family + prefix + name'---quindi vado a cercarle scorrendo tra le chiavi
+            const {family, prefix, name, type} = item;
+
+            // console.log(family, prefix, name);
+            const type_position = types.indexOf(type);
+            const color_postion = colors[type_position];
+
+            // creo una variabile dove salvo la struttura per stampare l'icona
+            const icon_complete = $('.container').append(
+                `
+                <div>
+                    <i class="${family} ${prefix}${name}" style="color:${color_postion}">
+                    </i>
+                </div>
+                `
+            );
+
+        });
+
+    });
+
+
 
 
 
